@@ -12,6 +12,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText edtRegisterAccount, edtRegisterPassword, edtConfirmPassword;
     private Button btnSubmitRegister, btnBackToLogin;
+    private DatabaseReminder database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,8 @@ public class RegisterActivity extends AppCompatActivity {
         edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
         btnSubmitRegister = findViewById(R.id.btnSubmitRegister);
         btnBackToLogin = findViewById(R.id.btnBackToLogin);
+
+        database = new DatabaseReminder(this);
 
         btnSubmitRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,8 +57,13 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        // Giả lập đăng ký thành công
-        Toast.makeText(this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+        // Lưu tài khoản vào cơ sở dữ liệu
+        boolean success = database.addUser(account, password);
+        if (success) {
+            Toast.makeText(this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+        } else {
+            Toast.makeText(this, "Lỗi khi đăng ký!", Toast.LENGTH_SHORT).show();
+        }
     }
 }

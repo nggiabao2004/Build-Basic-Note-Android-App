@@ -14,13 +14,13 @@
         android:layout_marginTop="16dp">
 
         <Button
-            android:id="@+id/buttonBackToMainFromAdd"
+            android:id="@+id/btnBackToMain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Quay lại" />
 
         <Button
-            android:id="@+id/buttonAddTaskToList"
+            android:id="@+id/btnAddTaskSubmit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Thêm công việc"
@@ -29,27 +29,19 @@
 
     <!-- Tên công việc -->
     <EditText
-        android:id="@+id/editTextTaskName"
+        android:id="@+id/edtTaskName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Tên công việc" />
 
     <!-- Mô tả công việc -->
     <EditText
-        android:id="@+id/editTextTaskDescription"
+        android:id="@+id/edtTaskDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Mô tả công việc"
         android:inputType="textMultiLine"
         android:minLines="3"
         android:gravity="top" />
-
-    <!-- Ngày hết hạn công việc (DateTimePicker) -->
-    <EditText
-        android:id="@+id/editTextTaskDeadline"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Ngày hết hạn"
-        android:inputType="datetime" />
 
 </LinearLayout>

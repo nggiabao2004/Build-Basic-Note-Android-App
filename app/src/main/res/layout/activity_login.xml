@@ -8,7 +8,7 @@
 
     <!-- Ô nhập tài khoản -->
     <EditText
-        android:id="@+id/editTextLoginAccount"
+        android:id="@+id/edtAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Tài khoản (10 số)"
@@ -16,7 +16,7 @@
 
     <!-- Ô nhập mật khẩu -->
     <EditText
-        android:id="@+id/editTextLoginPassword"
+        android:id="@+id/edtPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Mật khẩu (6 ký tự)"
@@ -32,14 +32,14 @@
 
         <!-- Nút Đăng nhập -->
         <Button
-            android:id="@+id/buttonRegisterAccount"
+            android:id="@+id/btnRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Đăng Ký" />
 
         <!-- Nút Đăng ký tài khoản -->
         <Button
-            android:id="@+id/buttonLogin"
+            android:id="@+id/btnLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Đăng Nhập"

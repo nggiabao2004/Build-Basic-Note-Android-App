@@ -14,14 +14,14 @@
 
         <!--Button đăng xuất-->
         <Button
-            android:id="@+id/buttonLogout"
+            android:id="@+id/btnLogout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Đăng xuất" />
 
         <!--Button thêm công việc-->
         <Button
-            android:id="@+id/buttonAddTask"
+            android:id="@+id/btnAddTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Thêm công việc"
@@ -30,7 +30,7 @@
 
     <!-- Listview các công việc -->
     <ListView
-        android:id="@+id/listViewTasks"
+        android:id="@+id/lvTasks"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

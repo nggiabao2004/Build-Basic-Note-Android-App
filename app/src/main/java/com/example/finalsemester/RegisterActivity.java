@@ -6,56 +6,56 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText editTextAccountRegister, editTextPasswordRegister, editTextConfirmPasswordRegister;
-    private Button buttonRegister, buttonBackToLogin;
+    private EditText edtRegisterAccount, edtRegisterPassword, edtConfirmPassword;
+    private Button btnSubmitRegister, btnBackToLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        // Khởi tạo các view
-        editTextAccountRegister = findViewById(R.id.editTextAccountRegister);
-        editTextPasswordRegister = findViewById(R.id.editTextPasswordRegister);
-        editTextConfirmPasswordRegister = findViewById(R.id.editTextConfirmPasswordRegister);
-        buttonRegister = findViewById(R.id.buttonRegister);
-        buttonBackToLogin = findViewById(R.id.buttonBackToLogin);
+        edtRegisterAccount = findViewById(R.id.edtRegisterAccount);
+        edtRegisterPassword = findViewById(R.id.edtRegisterPassword);
+        edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
+        btnSubmitRegister = findViewById(R.id.btnSubmitRegister);
+        btnBackToLogin = findViewById(R.id.btnBackToLogin);
 
-        // Xử lý sự kiện đăng ký tài khoản
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
+        btnSubmitRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String account = editTextAccountRegister.getText().toString();
-                String password = editTextPasswordRegister.getText().toString();
-                String confirmPassword = editTextConfirmPasswordRegister.getText().toString();
-
-                if (password.equals(confirmPassword)) {
-                    // Kiểm tra tài khoản đã tồn tại hay chưa (có thể sử dụng SQLite ở đây)
-                    if (account.equals("1234567890")) { // Giả sử tài khoản đã tồn tại
-                        Toast.makeText(RegisterActivity.this, "Tài khoản đã tồn tại", Toast.LENGTH_SHORT).show();
-                    } else {
-                        // Đăng ký thành công
-                        Toast.makeText(RegisterActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                        finish();
-                    }
-                } else {
-                    Toast.makeText(RegisterActivity.this, "Mật khẩu không khớp", Toast.LENGTH_SHORT).show();
-                }
+                registerAccount();
             }
         });
 
-        // Sự kiện quay lại màn hình đăng nhập
-        buttonBackToLogin.setOnClickListener(new View.OnClickListener() {
+        btnBackToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
             }
         });
+    }
+
+    private void registerAccount() {
+        String account = edtRegisterAccount.getText().toString().trim();
+        String password = edtRegisterPassword.getText().toString().trim();
+        String confirmPassword = edtConfirmPassword.getText().toString().trim();
+
+        if (account.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            Toast.makeText(this, "Vui lòng điền đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            Toast.makeText(this, "Mật khẩu không khớp!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Giả lập đăng ký thành công
+        Toast.makeText(this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
     }
 }

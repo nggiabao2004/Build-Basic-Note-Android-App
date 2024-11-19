@@ -9,7 +9,7 @@
 
     <!-- EditText cho tài khoản (10 số) -->
     <EditText
-        android:id="@+id/editTextAccountRegister"
+        android:id="@+id/edtRegisterAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Tài khoản (10 số)"
@@ -18,7 +18,7 @@
 
     <!-- EditText cho mật khẩu (6 ký tự) -->
     <EditText
-        android:id="@+id/editTextPasswordRegister"
+        android:id="@+id/edtRegisterPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Mật khẩu (6 ký tự)"
@@ -27,7 +27,7 @@
 
     <!-- EditText cho xác nhận mật khẩu (6 ký tự) -->
     <EditText
-        android:id="@+id/editTextConfirmPasswordRegister"
+        android:id="@+id/edtConfirmPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Xác nhận mật khẩu"
@@ -44,7 +44,7 @@
 
         <!-- Button Quay lại (trở về màn hình đăng nhập) -->
         <Button
-            android:id="@+id/buttonBackToLogin"
+            android:id="@+id/btnBackToLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Quay lại"
@@ -52,7 +52,7 @@
 
         <!-- Button Đăng ký -->
         <Button
-            android:id="@+id/buttonRegister"
+            android:id="@+id/btnSubmitRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Đăng ký" />

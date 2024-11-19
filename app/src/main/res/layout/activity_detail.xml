@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Các nút thao tác -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp">
+
+        <!-- Nút Quay lại -->
+        <Button
+            android:id="@+id/buttonBackFromDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quay lại" />
+
+        <!-- Nút Hoàn thành -->
+        <Button
+            android:id="@+id/buttonCompleteTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hoàn thành"
+            android:layout_marginStart="16dp" />
+    </LinearLayout>
+
+    <!-- Tên công việc -->
+    <EditText
+        android:id="@+id/editTextDetailTaskName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tên công việc" />
+
+    <!-- Mô tả công việc -->
+    <EditText
+        android:id="@+id/editTextDetailTaskDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mô tả công việc"
+        android:inputType="textMultiLine"
+        android:minLines="3"
+        android:gravity="top" />
+
+    <!-- Ngày hết hạn công việc -->
+    <EditText
+        android:id="@+id/editTextDetailTaskDeadline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ngày hết hạn"
+        android:inputType="datetime" />
+
+    <!-- Nút Xóa và Sửa -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp">
+
+        <!-- Nút Xóa -->
+        <Button
+            android:id="@+id/buttonDeleteTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Xóa" />
+
+        <!-- Nút Sửa -->
+        <Button
+            android:id="@+id/buttonEditTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sửa"
+            android:layout_marginStart="16dp" />
+    </LinearLayout>
+</LinearLayout>

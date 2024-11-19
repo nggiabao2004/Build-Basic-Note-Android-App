@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Các nút thao tác -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/buttonBackToMainFromAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quay lại" />
+
+        <Button
+            android:id="@+id/buttonAddTaskToList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thêm công việc"
+            android:layout_marginStart="16dp" />
+    </LinearLayout>
+
+    <!-- Tên công việc -->
+    <EditText
+        android:id="@+id/editTextTaskName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tên công việc" />
+
+    <!-- Mô tả công việc -->
+    <EditText
+        android:id="@+id/editTextTaskDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mô tả công việc"
+        android:inputType="textMultiLine"
+        android:minLines="3"
+        android:gravity="top" />
+
+    <!-- Ngày hết hạn công việc (DateTimePicker) -->
+    <EditText
+        android:id="@+id/editTextTaskDeadline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ngày hết hạn"
+        android:inputType="datetime" />
+
+</LinearLayout>

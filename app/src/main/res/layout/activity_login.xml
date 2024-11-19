@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <!-- Ô nhập tài khoản -->
+    <EditText
+        android:id="@+id/editTextLoginAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tài khoản (10 số)"
+        android:inputType="phone" />
+
+    <!-- Ô nhập mật khẩu -->
+    <EditText
+        android:id="@+id/editTextLoginPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mật khẩu (6 ký tự)"
+        android:inputType="textPassword" />
+
+    <!-- LinearLayout chứa 2 button đăng nhập và đăng ký -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp">
+
+        <!-- Nút Đăng nhập -->
+        <Button
+            android:id="@+id/buttonRegisterAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đăng Ký" />
+
+        <!-- Nút Đăng ký tài khoản -->
+        <Button
+            android:id="@+id/buttonLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đăng Nhập"
+            android:layout_marginStart="16dp" />
+    </LinearLayout>
+
+</LinearLayout>

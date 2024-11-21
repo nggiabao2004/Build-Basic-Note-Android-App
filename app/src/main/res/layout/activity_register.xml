@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@drawable/wallpaper_background" >
 
     <!-- EditText cho tài khoản (10 số) -->
     <EditText

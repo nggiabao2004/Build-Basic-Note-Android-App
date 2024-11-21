@@ -90,7 +90,8 @@ public class HomeActivity extends AppCompatActivity {
 
             if ("delete".equals(action)) {
                 // Xóa công việc khỏi taskList và cập nhật ListView
-                removeTaskFromList(taskName);  // Gọi phương thức xóa công việc khỏi danh sách
+                taskList.remove(taskName);
+                taskAdapter.notifyDataSetChanged();
                 Toast.makeText(this, "Công việc đã được xóa!", Toast.LENGTH_SHORT).show();
             } else if ("complete".equals(action)) {
                 // Hoàn thành công việc (có thể cập nhật trạng thái nếu cần)

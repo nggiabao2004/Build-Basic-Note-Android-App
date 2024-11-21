@@ -47,15 +47,15 @@
             android:id="@+id/btnBackToLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quay lại"
-            android:layout_marginStart="16dp" />
+            android:text="Quay lại" />
 
         <!-- Button Đăng ký -->
         <Button
             android:id="@+id/btnSubmitRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Đăng ký" />
+            android:text="Đăng ký"
+            android:layout_marginStart="50dp"/>
     </LinearLayout>
 
 </LinearLayout>

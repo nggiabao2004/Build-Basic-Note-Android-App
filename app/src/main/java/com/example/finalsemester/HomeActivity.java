@@ -91,13 +91,10 @@ public class HomeActivity extends AppCompatActivity {
             String taskName = data.getStringExtra("task_name");
 
             if ("delete".equals(action)) {
-                // Nếu công việc bị xóa, loại bỏ công việc khỏi danh sách và cập nhật lại ListView
+                // Xóa công việc khỏi taskList và cập nhật ListView
                 taskList.remove(taskName);
                 taskAdapter.notifyDataSetChanged();
                 Toast.makeText(this, "Công việc đã được xóa!", Toast.LENGTH_SHORT).show();
-            } else if ("complete".equals(action)) {
-                // Nếu công việc hoàn thành, có thể cập nhật trạng thái công việc nếu cần
-                Toast.makeText(this, "Công việc đã được đánh dấu hoàn thành!", Toast.LENGTH_SHORT).show();
             }
         }
     }

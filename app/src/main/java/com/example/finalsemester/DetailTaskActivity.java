@@ -44,7 +44,7 @@ public class DetailTaskActivity extends AppCompatActivity {
             Toast.makeText(this, "Công việc đã hoàn thành!", Toast.LENGTH_SHORT).show();
 
             // Gửi kết quả về HomeActivity
-            returnResult("complete");  // Trả kết quả về HomeActivity với action "complete"
+            returnResult("delete");  // Trả kết quả về HomeActivity với action "complete"
         });
 
         // Xử lý nút "Xóa công việc"
@@ -84,7 +84,7 @@ public class DetailTaskActivity extends AppCompatActivity {
     // Phương thức đánh dấu công việc hoàn thành
     private void markTaskAsComplete() {
         String accountId = "current_account_id";  // Thay bằng account ID thực tế
-        dbHelper.updateTask(taskName, edtTaskDescription.getText().toString(), 1, accountId);  // 1 là trạng thái hoàn thành
+        dbHelper.deleteTask(taskName, accountId);  // Xóa công việc khỏi cơ sở dữ liệu
     }
 
     // Phương thức xóa công việc

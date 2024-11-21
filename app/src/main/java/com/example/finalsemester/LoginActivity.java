@@ -41,6 +41,8 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    // LoginActivity.java
+
     private void loginUser() {
         String account = edtAccount.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
@@ -50,12 +52,15 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        // Kiểm tra tài khoản và mật khẩu từ database
+        // Kiểm tra tài khoản và mật khẩu từ cơ sở dữ liệu
         if (database.checkUser(account, password)) {
             Toast.makeText(this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+            intent.putExtra("account_id", account);  // Truyền account ID sang HomeActivity
+            startActivity(intent);
         } else {
             Toast.makeText(this, "Thông tin không chính xác!", Toast.LENGTH_SHORT).show();
         }
     }
+
 }

@@ -53,7 +53,13 @@ public class AddTaskActivity extends AppCompatActivity {
 
     // Phương thức lưu công việc vào database (ví dụ)
     private void saveTask(String taskName, String taskDescription) {
-        // Lưu công việc vào database tại đây
-        // Thực hiện lưu vào database SQLite hoặc bất kỳ phương thức lưu trữ nào khác
+        DatabaseReminder dbHelper = new DatabaseReminder(this);
+        // Lấy accountId từ thông tin đăng nhập hiện tại (thêm logic nếu cần)
+        String accountId = getIntent().getStringExtra("account_id");
+        boolean isSuccess = dbHelper.addTask(taskName, taskDescription, accountId);
+        if (!isSuccess) {
+            Toast.makeText(this, "Lỗi khi thêm công việc", Toast.LENGTH_SHORT).show();
+        }
+        dbHelper.close();
     }
 }

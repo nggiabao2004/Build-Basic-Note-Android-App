@@ -46,14 +46,6 @@
         android:minLines="3"
         android:gravity="top" />
 
-    <!-- Ngày hết hạn công việc -->
-    <EditText
-        android:id="@+id/editTextDetailTaskDeadline"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Ngày hết hạn"
-        android:inputType="datetime" />
-
     <!-- Nút Xóa và Sửa -->
     <LinearLayout
         android:layout_width="match_parent"

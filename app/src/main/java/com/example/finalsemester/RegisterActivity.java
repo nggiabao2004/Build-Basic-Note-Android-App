@@ -17,41 +17,50 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_register); // Sử dụng layout activity_register.xml
 
+        // Ánh xạ các view từ XML
         edtRegisterAccount = findViewById(R.id.edtRegisterAccount);
         edtRegisterPassword = findViewById(R.id.edtRegisterPassword);
         edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
         btnSubmitRegister = findViewById(R.id.btnSubmitRegister);
         btnBackToLogin = findViewById(R.id.btnBackToLogin);
 
+        // Khởi tạo đối tượng DatabaseReminder để truy cập cơ sở dữ liệu
         database = new DatabaseReminder(this);
 
+        // Xử lý sự kiện khi người dùng nhấn nút "Đăng ký"
         btnSubmitRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registerAccount();
+                registerAccount(); // Gọi phương thức registerAccount() để đăng ký tài khoản
             }
         });
 
+        // Xử lý sự kiện khi người dùng nhấn nút "Quay lại đăng nhập"
         btnBackToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Quay lại màn hình đăng nhập
                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
             }
         });
     }
 
+    // Phương thức đăng ký tài khoản
     private void registerAccount() {
+        // Lấy thông tin tài khoản, mật khẩu và xác nhận mật khẩu từ EditText
         String account = edtRegisterAccount.getText().toString().trim();
         String password = edtRegisterPassword.getText().toString().trim();
         String confirmPassword = edtConfirmPassword.getText().toString().trim();
 
+        // Kiểm tra xem có trường nào bị bỏ trống không
         if (account.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             Toast.makeText(this, "Vui lòng điền đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        // Kiểm tra mật khẩu và xác nhận mật khẩu có khớp không
         if (!password.equals(confirmPassword)) {
             Toast.makeText(this, "Mật khẩu không khớp!", Toast.LENGTH_SHORT).show();
             return;
@@ -60,9 +69,11 @@ public class RegisterActivity extends AppCompatActivity {
         // Lưu tài khoản vào cơ sở dữ liệu
         boolean success = database.addUser(account, password);
         if (success) {
+            // Thông báo đăng ký thành công và quay lại màn hình đăng nhập
             Toast.makeText(this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
         } else {
+            // Thông báo lỗi nếu có vấn đề khi đăng ký
             Toast.makeText(this, "Lỗi khi đăng ký!", Toast.LENGTH_SHORT).show();
         }
     }

@@ -33,31 +33,32 @@ public class DetailTaskActivity extends AppCompatActivity {
         dbHelper = new DatabaseReminder(this);
         taskName = getIntent().getStringExtra("task_name"); // Lấy tên công việc từ Intent
 
-        loadTaskDetails();
+        loadTaskDetails(); // Tải chi tiết công việc từ cơ sở dữ liệu
 
         // Xử lý nút "Quay lại"
         btnBack.setOnClickListener(v -> finish());
 
+        // Xử lý nút "Hoàn thành công việc"
         btnComplete.setOnClickListener(v -> {
-            markTaskAsComplete(); // Đánh dấu hoàn thành công việc
+            markTaskAsComplete(); // Đánh dấu công việc là hoàn thành
             Toast.makeText(this, "Công việc đã hoàn thành!", Toast.LENGTH_SHORT).show();
 
             // Gửi kết quả về HomeActivity
-            returnResult("complete");  // Trả kết quả về HomeActivity
+            returnResult("complete");  // Trả kết quả về HomeActivity với action "complete"
         });
 
+        // Xử lý nút "Xóa công việc"
         btnDelete.setOnClickListener(v -> {
-            deleteTask(); // Xóa công việc
+            deleteTask(); // Xóa công việc khỏi cơ sở dữ liệu
             Toast.makeText(this, "Công việc đã được xóa!", Toast.LENGTH_SHORT).show();
 
             // Gửi kết quả về HomeActivity
-            returnResult("delete");  // Trả kết quả về HomeActivity
+            returnResult("delete");  // Trả kết quả về HomeActivity với action "delete"
         });
 
-
-        // Xử lý nút "Sửa"
+        // Xử lý nút "Sửa công việc"
         btnEdit.setOnClickListener(v -> {
-            editTask();
+            editTask();  // Sửa công việc trong cơ sở dữ liệu
             Toast.makeText(this, "Công việc đã được cập nhật!", Toast.LENGTH_SHORT).show();
             finish();
         });
@@ -65,15 +66,17 @@ public class DetailTaskActivity extends AppCompatActivity {
 
     // Load chi tiết công việc từ database
     private void loadTaskDetails() {
+        // Truy vấn cơ sở dữ liệu để lấy thông tin công việc
         Cursor cursor = dbHelper.getReadableDatabase().query(DatabaseReminder.TABLE_TASK,
                 new String[]{DatabaseReminder.COLUMN_TASK_NAME, DatabaseReminder.COLUMN_TASK_DESCRIPTION},
-                DatabaseReminder.COLUMN_TASK_NAME + " = ?",
+                DatabaseReminder.COLUMN_TASK_NAME + " = ?", // Điều kiện tìm kiếm công việc
                 new String[]{taskName}, null, null, null);
 
+        // Nếu tìm thấy công việc
         if (cursor != null && cursor.moveToFirst()) {
             String taskDescription = cursor.getString(cursor.getColumnIndex(DatabaseReminder.COLUMN_TASK_DESCRIPTION));
-            edtTaskName.setText(taskName);
-            edtTaskDescription.setText(taskDescription);
+            edtTaskName.setText(taskName);  // Hiển thị tên công việc
+            edtTaskDescription.setText(taskDescription);  // Hiển thị mô tả công việc
             cursor.close();
         }
     }
@@ -93,7 +96,7 @@ public class DetailTaskActivity extends AppCompatActivity {
     // Sửa chi tiết công việc
     // Phương thức chỉnh sửa công việc
     private void editTask() {
-        String updatedDescription = edtTaskDescription.getText().toString();
+        String updatedDescription = edtTaskDescription.getText().toString(); // Lấy mô tả công việc đã sửa
 
         // Cập nhật công việc trong cơ sở dữ liệu
         String accountId = "current_account_id";  // Thay bằng account ID thực tế
@@ -103,9 +106,9 @@ public class DetailTaskActivity extends AppCompatActivity {
     // Trả kết quả về HomeActivity
     private void returnResult(String action) {
         Intent resultIntent = new Intent();
-        resultIntent.putExtra("action", action);
-        resultIntent.putExtra("task_name", taskName);
-        setResult(RESULT_OK, resultIntent); // Trả kết quả
-        finish();
+        resultIntent.putExtra("action", action);  // Truyền action (complete hoặc delete)
+        resultIntent.putExtra("task_name", taskName);  // Truyền tên công việc
+        setResult(RESULT_OK, resultIntent); // Trả kết quả về HomeActivity
+        finish();  // Kết thúc Activity
     }
 }

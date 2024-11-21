@@ -58,7 +58,7 @@ public class HomeActivity extends AppCompatActivity {
         lvTasks.setOnItemClickListener((parent, view, position, id) -> {
             String selectedTaskName = taskList.get(position);
             Intent intent = new Intent(HomeActivity.this, DetailTaskActivity.class);
-            intent.putExtra("task_name", selectedTaskName);
+            intent.putExtra("task_name", selectedTaskName);  // Truyền tên công việc vào DetailTaskActivity
             startActivity(intent);
         });
     }
@@ -69,8 +69,9 @@ public class HomeActivity extends AppCompatActivity {
         DatabaseReminder dbHelper = new DatabaseReminder(this);
         String accountId = "current_account_id";  // Thay bằng account ID từ login (ví dụ từ Intent)
 
-        Cursor cursor = dbHelper.getTasksByAccount(accountId);  // Lấy công việc của tài khoản hiện tại
-        taskList.clear();
+        // Lấy danh sách công việc của tài khoản hiện tại từ database
+        Cursor cursor = dbHelper.getTasksByAccount(accountId);
+        taskList.clear();  // Xóa danh sách cũ
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 String taskName = cursor.getString(cursor.getColumnIndex(DatabaseReminder.COLUMN_TASK_NAME));
@@ -81,20 +82,21 @@ public class HomeActivity extends AppCompatActivity {
         taskAdapter.notifyDataSetChanged();  // Cập nhật ListView với danh sách công việc mới
     }
 
+    // Phương thức trả kết quả về HomeActivity sau khi thực hiện hành động trong DetailTaskActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && data != null) {
-            String action = data.getStringExtra("action");
+            String action = data.getStringExtra("action");  // Lấy hành động từ Intent trả về
             String taskName = data.getStringExtra("task_name");
 
             if ("delete".equals(action)) {
-                // Xóa công việc khỏi taskList và cập nhật ListView
+                // Nếu công việc bị xóa, loại bỏ công việc khỏi danh sách và cập nhật lại ListView
                 taskList.remove(taskName);
                 taskAdapter.notifyDataSetChanged();
                 Toast.makeText(this, "Công việc đã được xóa!", Toast.LENGTH_SHORT).show();
             } else if ("complete".equals(action)) {
-                // Hoàn thành công việc (có thể cập nhật trạng thái nếu cần)
+                // Nếu công việc hoàn thành, có thể cập nhật trạng thái công việc nếu cần
                 Toast.makeText(this, "Công việc đã được đánh dấu hoàn thành!", Toast.LENGTH_SHORT).show();
             }
         }

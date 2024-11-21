@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="16dp"
-    android:background="@drawable/wallpaper_background" >
+    android:background="@drawable/wallpaper_mountain" >
 
     <!-- EditText cho tài khoản (10 số) -->
     <EditText

@@ -7,13 +7,26 @@
     android:gravity="center"
     android:background="@drawable/wallpaper_mountain" >
 
+    <!-- Hình ảnh -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/notion_logo"
+        android:contentDescription="Image above EditText"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
+
     <!-- Ô nhập tài khoản -->
     <EditText
         android:id="@+id/edtAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Tài khoản (10 số)"
-        android:inputType="phone" />
+        android:inputType="phone"
+        android:layout_gravity="center"/>
 
     <!-- Ô nhập mật khẩu -->
     <EditText
@@ -33,14 +46,21 @@
 
         <!-- Nút Đăng nhập -->
         <Button
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+            android:padding="12dp"
             android:id="@+id/btnRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Đăng Ký"
-            />
+            android:text="Đăng Ký" />
 
         <!-- Nút Đăng ký tài khoản -->
         <Button
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+            android:padding="12dp"
             android:id="@+id/btnLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

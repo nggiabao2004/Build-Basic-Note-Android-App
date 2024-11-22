@@ -14,18 +14,33 @@
         android:gravity="center"
         android:layout_marginTop="16dp">
 
+        <!-- Nút Quay lại -->
         <Button
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+            android:padding="12dp"
             android:id="@+id/btnBackToMain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Quay lại" />
 
+        <!-- Khoảng cách tự động giữa 2 nút -->
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <!-- Nút Thêm công việc -->
         <Button
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+            android:padding="12dp"
             android:id="@+id/btnAddTaskSubmit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Thêm công việc"
-            android:layout_marginStart="75dp" />
+            android:text="Thêm" />
     </LinearLayout>
 
     <!-- Tên công việc -->
@@ -33,7 +48,9 @@
         android:id="@+id/edtTaskName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Tên công việc" />
+        android:hint="Tên công việc"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
 
     <!-- Mô tả công việc -->
     <EditText

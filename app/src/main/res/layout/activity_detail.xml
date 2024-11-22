@@ -4,30 +4,63 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@drawable/wallpaper_mountain" >
+    android:background="@drawable/wallpaper_mountain">
 
-    <!-- Các nút thao tác -->
+    <!-- Hàng đầu: Quay lại, Xóa và Sửa -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:layout_marginTop="16dp">
 
-        <!-- Nút Quay lại -->
+        <!-- Nút Quay lại, căn trái -->
         <Button
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+            android:padding="12dp"
             android:id="@+id/buttonBackFromDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quay lại" />
+            android:text="Quay lại"
+            android:layout_gravity="start"/>
 
-        <!-- Nút Hoàn thành -->
+        <!-- Khoảng cách tự động giữa các nút -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <!-- Nút Xóa, căn giữa -->
         <Button
-            android:id="@+id/buttonCompleteTask"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+            android:padding="12dp"
+            android:id="@+id/buttonDeleteTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hoàn thành"
-            android:layout_marginStart="90dp" />
+            android:text="Xóa"
+            android:layout_gravity="center"/>
+
+        <!-- Khoảng cách tự động giữa các nút -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <!-- Nút Sửa, căn phải -->
+        <Button
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+            android:padding="12dp"
+            android:id="@+id/buttonEditTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sửa"
+            android:layout_gravity="end"/>
     </LinearLayout>
 
     <!-- Tên công việc -->
@@ -35,7 +68,9 @@
         android:id="@+id/editTextDetailTaskName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Tên công việc" />
+        android:hint="Tên công việc"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp" />
 
     <!-- Mô tả công việc -->
     <EditText
@@ -45,29 +80,6 @@
         android:hint="Mô tả công việc"
         android:inputType="textMultiLine"
         android:minLines="3"
-        android:gravity="top" />
+        android:gravity="top"/>
 
-    <!-- Nút Xóa và Sửa -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="16dp">
-
-        <!-- Nút Xóa -->
-        <Button
-            android:id="@+id/buttonDeleteTask"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Xóa" />
-
-        <!-- Nút Sửa -->
-        <Button
-            android:id="@+id/buttonEditTask"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sửa"
-            android:layout_marginStart="50dp" />
-    </LinearLayout>
 </LinearLayout>

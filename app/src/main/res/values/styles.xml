@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="OrangeButton">
+        <item name="android:background">@color/orange</item> <!-- Màu nền cam -->
+        <item name="android:textColor">@color/black</item>  <!-- Màu chữ đậm -->
+        <item name="android:textStyle">bold</item>         <!-- Chữ đậm -->
+        <item name="android:padding">8dp</item>           <!-- Tùy chỉnh padding -->
+        <item name="android:gravity">center</item>        <!-- Căn giữa chữ -->
+    </style>
+</resources>

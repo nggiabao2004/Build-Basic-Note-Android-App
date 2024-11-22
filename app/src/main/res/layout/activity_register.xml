@@ -8,8 +8,21 @@
     android:padding="16dp"
     android:background="@drawable/wallpaper_mountain" >
 
+    <!-- Hình ảnh -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/notion_logo"
+        android:contentDescription="Image above EditText"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
+
     <!-- EditText cho tài khoản (10 số) -->
     <EditText
+        android:layout_gravity="center"
         android:id="@+id/edtRegisterAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,6 +58,10 @@
 
         <!-- Button Quay lại (trở về màn hình đăng nhập) -->
         <Button
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+            android:padding="12dp"
             android:id="@+id/btnBackToLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,10 +69,14 @@
 
         <!-- Button Đăng ký -->
         <Button
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+            android:padding="12dp"
             android:id="@+id/btnSubmitRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Đăng ký"
+            android:text="Đăng Ký"
             android:layout_marginStart="50dp"/>
     </LinearLayout>
 

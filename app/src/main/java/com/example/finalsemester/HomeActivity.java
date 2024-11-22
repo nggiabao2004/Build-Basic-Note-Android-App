@@ -3,7 +3,6 @@ package com.example.finalsemester;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -77,6 +76,8 @@ public class HomeActivity extends AppCompatActivity {
                 taskAdapter.notifyDataSetChanged();
             } else if ("add".equals(action)) {
                 loadTasks();  // Tải lại danh sách công việc sau khi thêm
+            } else if ("edit".equals(action)) {
+                loadTasks();  // Tải lại danh sách công việc sau khi sửa
             }
         }
     }

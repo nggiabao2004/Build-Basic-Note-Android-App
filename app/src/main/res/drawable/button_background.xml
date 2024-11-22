@@ -1,5 +1,4 @@
-<!-- circular_button_background.xml (Tạo file này trong thư mục drawable) -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@android:color/holo_orange_light"/>
-    <corners android:radius="40dp"/>
+    <solid android:color="@color/orange" /> <!-- Màu nền cam -->
+    <corners android:radius="12dp" /> <!-- Bo góc 12dp -->
 </shape>

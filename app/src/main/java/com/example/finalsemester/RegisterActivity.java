@@ -60,9 +60,21 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
+        // Kiểm tra mật khẩu phải từ 6 ký tự trở lên và có thể chứa chữ cái, chữ số, chữ hoa, chữ thường
+        if (password.length() < 6) {
+            Toast.makeText(this, "Mật khẩu phải đủ 6 ký tự trở lên!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // Kiểm tra mật khẩu và xác nhận mật khẩu có khớp không
         if (!password.equals(confirmPassword)) {
             Toast.makeText(this, "Mật khẩu không khớp!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Kiểm tra tài khoản đã tồn tại
+        if (database.isAccountExists(account)) {
+            Toast.makeText(this, "Tài khoản đã tồn tại!", Toast.LENGTH_SHORT).show();
             return;
         }
 

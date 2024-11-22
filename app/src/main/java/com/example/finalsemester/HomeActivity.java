@@ -3,105 +3,81 @@ package com.example.finalsemester;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 
-// HomeActivity: Hiển thị danh sách công việc và điều hướng
 public class HomeActivity extends AppCompatActivity {
 
-    private Button btnLogout, btnAddTask;
-    private ListView lvTasks;
-    private DatabaseReminder dbHelper;
-    private ArrayAdapter<String> taskAdapter;   // Adapter để hiển thị danh sách
-    private List<String> taskList;  // Danh sách các công việc
+    private DatabaseReminder database;
+    private ListView taskListView;
+    private TaskAdapter taskAdapter;
+    private ArrayList<Task> taskList;
+    private String accountId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home); // Sử dụng đúng layout activity_home.xml
+        setContentView(R.layout.activity_home);
 
-        // Ánh xạ các view từ XML
-        btnLogout = findViewById(R.id.btnLogout);
-        btnAddTask = findViewById(R.id.btnAddTask);
-        lvTasks = findViewById(R.id.lvTasks);
+        database = new DatabaseReminder(this);
 
-        // Khởi tạo database và danh sách
-        dbHelper = new DatabaseReminder(this);
+        taskListView = findViewById(R.id.lvTasks);
         taskList = new ArrayList<>();
-        taskAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, taskList);
-        lvTasks.setAdapter(taskAdapter);
+        accountId = getIntent().getStringExtra("account_id");
 
-        // Tải danh sách công việc từ database
-        loadTasks();
+        loadTasks(); // Tải danh sách công việc
 
-        // Xử lý sự kiện nút Đăng xuất
-        btnLogout.setOnClickListener(v -> {
-            startActivity(new Intent(HomeActivity.this, LoginActivity.class));
-            finish(); // Đóng HomeActivity để không quay lại khi bấm back
-        });
+        Button btnLogout = findViewById(R.id.btnLogout);
+        Button btnAddTask = findViewById(R.id.btnAddTask);
 
-        // Xử lý sự kiện nút Thêm công việc
+        btnLogout.setOnClickListener(v -> finish());  // Đăng xuất
         btnAddTask.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, AddTaskActivity.class);
-            intent.putExtra("account_id", "current_account_id"); // Thay "current_account_id" bằng giá trị thật
-            startActivity(intent);
+            intent.putExtra("account_id", accountId);
+            startActivityForResult(intent, 1);  // Gửi yêu cầu thêm công việc
         });
 
-        // Xử lý khi click vào một công việc trong danh sách
-        lvTasks.setOnItemClickListener((parent, view, position, id) -> {
-            String selectedTaskName = taskList.get(position);
+        taskListView.setOnItemClickListener((parent, view, position, id) -> {
+            Task task = taskList.get(position);
             Intent intent = new Intent(HomeActivity.this, DetailTaskActivity.class);
-            intent.putExtra("task_name", selectedTaskName);  // Truyền tên công việc vào DetailTaskActivity
-            startActivity(intent);
+            intent.putExtra("task_name", task.getName());
+            intent.putExtra("account_id", accountId);
+            startActivityForResult(intent, 1);
         });
     }
 
-    // Tải danh sách công việc từ database
-    // Phương thức tải công việc theo tài khoản
     private void loadTasks() {
-        DatabaseReminder dbHelper = new DatabaseReminder(this);
-        String accountId = "current_account_id";  // Thay bằng account ID từ login (ví dụ từ Intent)
-
-        // Lấy danh sách công việc của tài khoản hiện tại từ database
-        Cursor cursor = dbHelper.getTasksByAccount(accountId);
-        taskList.clear();  // Xóa danh sách cũ
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-                String taskName = cursor.getString(cursor.getColumnIndex(DatabaseReminder.COLUMN_TASK_NAME));
-                taskList.add(taskName);  // Thêm tên công việc vào danh sách
-            } while (cursor.moveToNext());
-            cursor.close();
+        Cursor cursor = database.getTasksByAccount(accountId);
+        taskList.clear();
+        while (cursor.moveToNext()) {
+            String taskName = cursor.getString(cursor.getColumnIndex(DatabaseReminder.COLUMN_TASK_NAME));
+            String taskDescription = cursor.getString(cursor.getColumnIndex(DatabaseReminder.COLUMN_TASK_DESCRIPTION));
+            taskList.add(new Task(taskName, taskDescription));
         }
-        taskAdapter.notifyDataSetChanged();  // Cập nhật ListView với danh sách công việc mới
+        cursor.close();
+
+        taskAdapter = new TaskAdapter(this, taskList);
+        taskListView.setAdapter(taskAdapter);
     }
 
-    // Phương thức trả kết quả về HomeActivity sau khi thực hiện hành động trong DetailTaskActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && data != null) {
-            String action = data.getStringExtra("action");  // Lấy hành động từ Intent trả về
-            String taskName = data.getStringExtra("task_name");
-
+            String action = data.getStringExtra("action");
             if ("delete".equals(action)) {
-                // Xóa công việc khỏi taskList và cập nhật ListView
-                taskList.remove(taskName);
+                String deletedTaskName = data.getStringExtra("task_name");
+                taskList.removeIf(task -> task.getName().equals(deletedTaskName)); // Xóa công việc khỏi danh sách
                 taskAdapter.notifyDataSetChanged();
-                Toast.makeText(this, "Công việc đã được xóa!", Toast.LENGTH_SHORT).show();
+            } else if ("add".equals(action)) {
+                loadTasks();  // Tải lại danh sách công việc sau khi thêm
             }
         }
-    }
-
-    // Hàm để xóa công việc khỏi danh sách hiển thị
-    private void removeTaskFromList(String taskName) {
-        taskList.remove(taskName); // Xóa công việc theo tên
-        taskAdapter.notifyDataSetChanged();  // Cập nhật lại danh sách hiển thị
     }
 }

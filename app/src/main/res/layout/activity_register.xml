@@ -45,8 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Xác nhận mật khẩu"
-        android:inputType="textPassword"
-        android:maxLength="6" />
+        android:inputType="textPassword" />
 
     <!-- LinearLayout chứa 2 button Quay lại và Đăng ký -->
     <LinearLayout

@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center"
-    android:background="@drawable/wallpaper_mountain" >
+    android:background="@drawable/wallpaper_mountain">
 
     <!-- Hình ảnh -->
     <ImageView
@@ -26,7 +26,8 @@
         android:layout_height="wrap_content"
         android:hint="Tài khoản"
         android:inputType="phone"
-        android:layout_gravity="center"/>
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="16dp" />
 
     <!-- Ô nhập mật khẩu -->
     <EditText
@@ -34,7 +35,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Mật khẩu"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:layout_marginBottom="16dp" />
 
     <!-- LinearLayout chứa 2 button đăng nhập và đăng ký -->
     <LinearLayout
@@ -44,7 +46,7 @@
         android:gravity="center"
         android:layout_marginTop="16dp">
 
-        <!-- Nút Đăng nhập -->
+        <!-- Nút Đăng ký -->
         <Button
             android:textColor="@color/black"
             android:textStyle="bold"
@@ -55,7 +57,7 @@
             android:layout_height="wrap_content"
             android:text="Đăng Ký" />
 
-        <!-- Nút Đăng ký tài khoản -->
+        <!-- Nút Đăng nhập tài khoản -->
         <Button
             android:textColor="@color/black"
             android:textStyle="bold"

@@ -20,11 +20,11 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register); // Sử dụng layout activity_register.xml
 
         // Ánh xạ các view từ XML
-        edtRegisterAccount = findViewById(R.id.edtRegisterAccount);
-        edtRegisterPassword = findViewById(R.id.edtRegisterPassword);
-        edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
-        btnSubmitRegister = findViewById(R.id.btnSubmitRegister);
-        btnBackToLogin = findViewById(R.id.btnBackToLogin);
+        edtRegisterAccount = findViewById(R.id.edtRegisterAccount);  // Ánh xạ EditText cho tài khoản
+        edtRegisterPassword = findViewById(R.id.edtRegisterPassword);  // Ánh xạ EditText cho mật khẩu
+        edtConfirmPassword = findViewById(R.id.edtConfirmPassword);  // Ánh xạ EditText cho xác nhận mật khẩu
+        btnSubmitRegister = findViewById(R.id.btnSubmitRegister);  // Ánh xạ nút đăng ký
+        btnBackToLogin = findViewById(R.id.btnBackToLogin);  // Ánh xạ nút quay lại màn hình đăng nhập
 
         // Khởi tạo đối tượng DatabaseReminder để truy cập cơ sở dữ liệu
         database = new DatabaseReminder(this);
@@ -33,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnSubmitRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registerAccount(); // Gọi phương thức registerAccount() để đăng ký tài khoản
+                registerAccount(); // Gọi phương thức registerAccount() để thực hiện đăng ký
             }
         });
 
@@ -50,9 +50,9 @@ public class RegisterActivity extends AppCompatActivity {
     // Phương thức đăng ký tài khoản
     private void registerAccount() {
         // Lấy thông tin tài khoản, mật khẩu và xác nhận mật khẩu từ EditText
-        String account = edtRegisterAccount.getText().toString().trim();
-        String password = edtRegisterPassword.getText().toString().trim();
-        String confirmPassword = edtConfirmPassword.getText().toString().trim();
+        String account = edtRegisterAccount.getText().toString().trim();  // Lấy tài khoản và loại bỏ khoảng trắng
+        String password = edtRegisterPassword.getText().toString().trim();  // Lấy mật khẩu và loại bỏ khoảng trắng
+        String confirmPassword = edtConfirmPassword.getText().toString().trim();  // Lấy mật khẩu xác nhận
 
         // Kiểm tra xem có trường nào bị bỏ trống không
         if (account.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {

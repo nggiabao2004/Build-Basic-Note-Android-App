@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:padding="10dp"
+    android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <!-- Tên công việc -->
     <TextView
         android:id="@+id/taskName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="4dp"
+        android:ellipsize="end"
+        android:maxLines="1" />
 
+    <!-- Mô tả công việc -->
     <TextView
         android:id="@+id/taskDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:layout_marginBottom="8dp" />
+
 </LinearLayout>

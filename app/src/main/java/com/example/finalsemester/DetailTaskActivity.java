@@ -21,8 +21,9 @@ public class DetailTaskActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        database = new DatabaseReminder(this);
+        database = new DatabaseReminder(this); // Khởi tạo đối tượng DatabaseReminder
 
+        // Ánh xạ các đối tượng UI từ layout
         editTextDetailTaskName = findViewById(R.id.editTextDetailTaskName);
         editTextDetailTaskDescription = findViewById(R.id.editTextDetailTaskDescription);
 
@@ -30,49 +31,58 @@ public class DetailTaskActivity extends AppCompatActivity {
         buttonDeleteTask = findViewById(R.id.buttonDeleteTask);
         buttonEditTask = findViewById(R.id.buttonEditTask);
 
+        // Lấy tên công việc và ID tài khoản từ Intent
         taskName = getIntent().getStringExtra("task_name");
         accountId = getIntent().getStringExtra("account_id");
 
-        loadTaskDetails();
+        loadTaskDetails();  // Tải thông tin công việc
 
+        // Thiết lập sự kiện quay lại màn hình trước
         buttonBackFromDetail.setOnClickListener(v -> finish());
 
+        // Xử lý sự kiện xóa công việc
         buttonDeleteTask.setOnClickListener(v -> {
-            deleteTask();
-            Toast.makeText(this, "Ghi chú đã được xóa!", Toast.LENGTH_SHORT).show();
+            deleteTask();  // Gọi phương thức xóa công việc
+            Toast.makeText(this, "Ghi chú đã được xóa!", Toast.LENGTH_SHORT).show();  // Hiển thị thông báo xóa thành công
 
+            // Trả kết quả về màn hình trước
             Intent resultIntent = new Intent();
-            resultIntent.putExtra("action", "delete");
+            resultIntent.putExtra("action", "delete");  // Gửi thông báo xóa công việc
             resultIntent.putExtra("task_name", taskName);
             setResult(RESULT_OK, resultIntent);
-            finish();
+            finish();  // Đóng màn hình chi tiết
         });
 
+        // Xử lý sự kiện sửa công việc
         buttonEditTask.setOnClickListener(v -> {
-            String updatedDescription = editTextDetailTaskDescription.getText().toString();
-            updateTask(updatedDescription);
-            Toast.makeText(this, "Công việc đã được sửa!", Toast.LENGTH_SHORT).show();
+            String updatedDescription = editTextDetailTaskDescription.getText().toString();  // Lấy mô tả đã chỉnh sửa
+            updateTask(updatedDescription);  // Gọi phương thức cập nhật công việc
+            Toast.makeText(this, "Công việc đã được sửa!", Toast.LENGTH_SHORT).show();  // Thông báo sửa thành công
         });
     }
 
+    // Phương thức tải chi tiết công việc từ cơ sở dữ liệu
     private void loadTaskDetails() {
-        Cursor cursor = database.getTasksByAccount(accountId);
+        Cursor cursor = database.getTasksByAccount(accountId);  // Lấy danh sách công việc của tài khoản
         while (cursor.moveToNext()) {
             String name = cursor.getString(cursor.getColumnIndex(DatabaseReminder.COLUMN_TASK_NAME));
             if (name.equals(taskName)) {
+                // Nếu tên công việc khớp, hiển thị thông tin chi tiết lên UI
                 editTextDetailTaskName.setText(name);
                 editTextDetailTaskDescription.setText(cursor.getString(cursor.getColumnIndex(DatabaseReminder.COLUMN_TASK_DESCRIPTION)));
-                break;
+                break;  // Thoát vòng lặp sau khi tìm thấy công việc cần tìm
             }
         }
-        cursor.close();
+        cursor.close();  // Đóng con trỏ
     }
 
+    // Phương thức xóa công việc
     private void deleteTask() {
-        database.deleteTask(taskName, accountId);
+        database.deleteTask(taskName, accountId);  // Xóa công việc từ cơ sở dữ liệu
     }
 
+    // Phương thức cập nhật công việc
     private void updateTask(String description) {
-        database.updateTask(taskName, description, accountId);
+        database.updateTask(taskName, description, accountId);  // Cập nhật công việc với mô tả mới
     }
 }

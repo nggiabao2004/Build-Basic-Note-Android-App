@@ -16,14 +16,14 @@
 
         <!-- Nút Quay lại, căn trái -->
         <Button
+            android:id="@+id/buttonBackFromDetail"
+            android:text="Quay lại"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:background="@drawable/button_background"
             android:padding="12dp"
-            android:id="@+id/buttonBackFromDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quay lại"
             android:layout_gravity="start"/>
 
         <!-- Khoảng cách tự động giữa các nút -->
@@ -34,14 +34,14 @@
 
         <!-- Nút Xóa, căn giữa -->
         <Button
+            android:id="@+id/buttonDeleteTask"
+            android:text="Xóa"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:background="@drawable/button_background"
             android:padding="12dp"
-            android:id="@+id/buttonDeleteTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Xóa"
             android:layout_gravity="center"/>
 
         <!-- Khoảng cách tự động giữa các nút -->
@@ -52,14 +52,14 @@
 
         <!-- Nút Sửa, căn phải -->
         <Button
+            android:id="@+id/buttonEditTask"
+            android:text="Sửa"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:background="@drawable/button_background"
             android:padding="12dp"
-            android:id="@+id/buttonEditTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sửa"
             android:layout_gravity="end"/>
     </LinearLayout>
 

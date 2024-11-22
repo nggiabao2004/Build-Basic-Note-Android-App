@@ -20,10 +20,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login); // Sử dụng layout activity_login.xml
 
         // Ánh xạ các view từ XML
-        edtAccount = findViewById(R.id.edtAccount);
-        edtPassword = findViewById(R.id.edtPassword);
-        btnLogin = findViewById(R.id.btnLogin);
-        btnRegister = findViewById(R.id.btnRegister);
+        edtAccount = findViewById(R.id.edtAccount);  // Ánh xạ EditText cho tài khoản
+        edtPassword = findViewById(R.id.edtPassword);  // Ánh xạ EditText cho mật khẩu
+        btnLogin = findViewById(R.id.btnLogin);  // Ánh xạ nút đăng nhập
+        btnRegister = findViewById(R.id.btnRegister);  // Ánh xạ nút đăng ký
 
         // Khởi tạo đối tượng DatabaseReminder để truy cập cơ sở dữ liệu
         database = new DatabaseReminder(this);
@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginUser(); // Gọi phương thức loginUser() để đăng nhập
+                loginUser(); // Gọi phương thức loginUser() để thực hiện đăng nhập
             }
         });
 
@@ -40,17 +40,17 @@ public class LoginActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Chuyển sang activity đăng ký
+                // Chuyển sang màn hình đăng ký người dùng mới
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
     }
 
-    // Phương thức đăng nhập người dùng
+    // Phương thức xử lý đăng nhập người dùng
     private void loginUser() {
         // Lấy tài khoản và mật khẩu từ EditText
-        String account = edtAccount.getText().toString().trim();
-        String password = edtPassword.getText().toString().trim();
+        String account = edtAccount.getText().toString().trim();  // Lấy tài khoản và loại bỏ khoảng trắng
+        String password = edtPassword.getText().toString().trim();  // Lấy mật khẩu và loại bỏ khoảng trắng
 
         // Kiểm tra nếu tài khoản hoặc mật khẩu trống
         if (account.isEmpty() || password.isEmpty()) {
@@ -59,15 +59,15 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        // Kiểm tra tài khoản và mật khẩu với cơ sở dữ liệu
+        // Kiểm tra tài khoản và mật khẩu trong cơ sở dữ liệu
         if (database.checkUser(account, password)) {
-            // Nếu đăng nhập thành công, chuyển sang HomeActivity và truyền tài khoản
+            // Nếu đăng nhập thành công, chuyển sang HomeActivity và truyền tài khoản vào
             Toast.makeText(this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-            intent.putExtra("account_id", account);  // Truyền account ID sang HomeActivity
-            startActivity(intent);
+            intent.putExtra("account_id", account);  // Truyền tài khoản vào HomeActivity
+            startActivity(intent);  // Mở HomeActivity
         } else {
-            // Thông báo nếu tài khoản hoặc mật khẩu không đúng
+            // Thông báo nếu tài khoản hoặc mật khẩu không chính xác
             Toast.makeText(this, "Thông tin không chính xác!", Toast.LENGTH_SHORT).show();
         }
     }

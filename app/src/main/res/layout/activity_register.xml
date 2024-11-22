@@ -22,13 +22,13 @@
 
     <!-- EditText cho tài khoản (10 số) -->
     <EditText
-        android:layout_gravity="center"
         android:id="@+id/edtRegisterAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Tài khoản (10 số)"
         android:inputType="number"
-        android:maxLength="10" />
+        android:maxLength="10"
+        android:layout_marginBottom="16dp" />
 
     <!-- EditText cho mật khẩu (6 ký tự) -->
     <EditText
@@ -37,15 +37,17 @@
         android:layout_height="wrap_content"
         android:hint="Mật khẩu (6 ký tự)"
         android:inputType="textPassword"
-        android:maxLength="6" />
+        android:maxLength="6"
+        android:layout_marginBottom="16dp" />
 
-    <!-- EditText cho xác nhận mật khẩu (6 ký tự) -->
+    <!-- EditText cho xác nhận mật khẩu -->
     <EditText
         android:id="@+id/edtConfirmPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Xác nhận mật khẩu"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:layout_marginBottom="20dp"/>
 
     <!-- LinearLayout chứa 2 button Quay lại và Đăng ký -->
     <LinearLayout
